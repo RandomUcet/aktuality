@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aktuální přehled – modelový zpravodajský web</title>
+  <title>Aktuální přehled – zpravodajský web</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,18 +13,6 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       background: #f4f4f4;
       color: #222;
-    }
-
-    /* Horní lišta – upozornění (vzdělávací simulace) */
-    .top-notice {
-      background: #222;
-      color: #fff;
-      font-size: 13px;
-      text-align: center;
-      padding: 6px 10px;
-    }
-    .top-notice strong {
-      text-transform: uppercase;
     }
 
     header {
@@ -146,15 +134,6 @@
       line-height: 1.7;
     }
 
-    .article-body .inline-note {
-      font-size: 13px;
-      color: #777;
-      background: #f5f5f5;
-      padding: 8px 10px;
-      border-left: 3px solid #bbb;
-      margin: 14px 0;
-    }
-
     /* Reklamní bloky */
     .ad-box {
       background: #ffffff;
@@ -240,7 +219,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 10px;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .footer-inner a {
@@ -257,6 +236,13 @@
       color: #999;
     }
 
+    .footer-disclaimer {
+      font-size: 11px;
+      color: #999;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+
     @media (max-width: 900px) {
       .page-wrapper {
         grid-template-columns: 1fr;
@@ -268,15 +254,13 @@
       .header-right {
         text-align: left;
       }
+      .footer-inner {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Jasné, ale nenápadné upozornění – kvůli etice a výuce -->
-  <div class="top-notice">
-    <strong>Vzdělávací simulace:</strong> Tento web slouží jako modelový příklad pro výuku kritického myšlení a ověřování zdrojů. Nejde o skutečný zpravodajský server.
-  </div>
 
   <header>
     <div class="header-inner">
@@ -284,7 +268,7 @@
         Aktuální<span>Deník</span>
       </div>
       <div class="header-right">
-        <div>Modelový zpravodajský projekt • Kybernetická bezpečnost</div>
+        <div>Aktuální přehled zpráv</div>
         <div>Dnes: 25. listopadu 2025</div>
       </div>
     </div>
@@ -309,7 +293,7 @@
       </h1>
 
       <div class="article-meta">
-        <span>Autor: Redakce – modelový text</span>
+        <span>Autor: Redakce</span>
         <span>Publikováno: 25. 11. 2025</span>
       </div>
 
@@ -366,12 +350,6 @@
           v rámci širšího balíku pomoci.
         </p>
 
-        <div class="inline-note">
-          Poznámka pro čtenáře: Tento text je součástí modelového vzdělávacího projektu zaměřeného na
-          rozvoj kritického myšlení a práce se zdroji. Obsah článku nepředstavuje skutečnou zprávu ani
-          oficiální stanovisko jakýchkoli institucí.
-        </div>
-
         <p>
           Celá situace otevírá širší otázku, nakolik by měly být podobné kroky transparentně komunikovány
           směrem k veřejnosti. Pokud je technika využívána mimo území České republiky, mohou být lidé
@@ -398,7 +376,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-box">
-        <div class="sidebar-title">Nejčtenější (modelová data)</div>
+        <div class="sidebar-title">Nejčtenější</div>
         <ul class="sidebar-list">
           <li>
             <span>Jak rozeznat dezinformaci od běžné zprávy: 5 základních kroků</span>
@@ -428,25 +406,21 @@
           </div>
         </div>
       </div>
-
-      <div class="sidebar-box">
-        <div class="sidebar-title">Informace o projektu</div>
-        <p style="font-size: 13px; color:#555; margin:0;">
-          Tento web byl vytvořen jako <strong>výukový model</strong> v rámci předmětu kybernetická bezpečnost
-          a mediální gramotnost. Cílem je ukázat, jak může vypadat věrohodně působící článek, který je však
-          nutné kriticky prověřovat a ověřovat v nezávislých zdrojích.
-        </p>
-      </div>
     </aside>
   </div>
 
   <footer>
     <div class="footer-inner">
       <div>
-        &copy; 2025 AktuálníDeník – modelový zpravodajský web pro výukové účely.
+        &copy; 2025 AktuálníDeník.
+        <div class="footer-badge">
+          Domácí a zahraniční přehledy, analýzy a komentáře.
+        </div>
       </div>
-      <div class="footer-badge">
-        Edukační simulace • Kybernetická bezpečnost • Školní projekt
+      <div class="footer-disclaimer">
+        Tento web a jeho obsah jsou modelovým příkladem vytvořeným pro výukové účely
+        (kritické myšlení, ověřování zdrojů, kybernetická bezpečnost). Nejedná se
+        o skutečný zpravodajský server ani reálnou zpravodajskou informaci.
       </div>
     </div>
   </footer>
