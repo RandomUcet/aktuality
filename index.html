@@ -3,62 +3,453 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelový článek – Zimní technika a zahraniční pomoc</title>
+  <title>Aktuální přehled – modelový zpravodajský web</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      max-width: 750px;
-      margin: 40px auto;
-      line-height: 1.6;
-      padding: 0 20px;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f4f4f4;
       color: #222;
     }
-    h1 { font-size: 28px; margin-bottom: 10px; }
-    .meta { color: #666; font-size: 14px; margin-bottom: 25px; }
-    .notice {
-      background: #f5f5f5;
-      border-left: 4px solid #888;
-      padding: 10px 15px;
-      margin-bottom: 25px;
+
+    /* Horní lišta – upozornění (vzdělávací simulace) */
+    .top-notice {
+      background: #222;
+      color: #fff;
+      font-size: 13px;
+      text-align: center;
+      padding: 6px 10px;
+    }
+    .top-notice strong {
+      text-transform: uppercase;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 10px 16px 6px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .logo span {
+      color: #d8242a;
+    }
+    .header-right {
+      font-size: 13px;
+      color: #777;
+      text-align: right;
+    }
+
+    nav {
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #ddd;
+      background: #fafafa;
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-item {
+      padding: 10px 0;
       font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #555;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-item.active {
+      border-bottom-color: #d8242a;
+      color: #d8242a;
+      font-weight: 600;
+    }
+
+    .page-wrapper {
+      max-width: 1180px;
+      margin: 20px auto;
+      padding: 0 16px 40px 16px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    /* Hlavní obsah */
+    .main-column {
+      min-width: 0;
+    }
+
+    .article-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #d8242a;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .article-title {
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 4px 0 8px 0;
+    }
+
+    .article-meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 14px;
+    }
+
+    .article-meta span + span::before {
+      content: "•";
+      margin: 0 4px;
+    }
+
+    .article-banner {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #d8242a 0%, #444 100%);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      color: #fff;
+      padding: 16px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .article-body p {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .article-body .inline-note {
+      font-size: 13px;
+      color: #777;
+      background: #f5f5f5;
+      padding: 8px 10px;
+      border-left: 3px solid #bbb;
+      margin: 14px 0;
+    }
+
+    /* Reklamní bloky */
+    .ad-box {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      margin: 10px 0 24px 0;
+    }
+    .ad-box .ad-label {
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .ad-box .ad-content {
+      height: 90px;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Boční sloupec */
+    .sidebar {
+      min-width: 0;
+    }
+
+    .sidebar-box {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #555;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .sidebar-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    .sidebar-list li span {
+      display: block;
+    }
+
+    .sidebar-list li small {
+      color: #999;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      background: #fafafa;
+      font-size: 12px;
+      color: #777;
+      padding: 12px 16px 20px 16px;
+      margin-top: 10px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-inner a {
+      color: #777;
+      text-decoration: none;
+    }
+
+    .footer-inner a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-badge {
+      font-size: 11px;
+      color: #999;
+    }
+
+    @media (max-width: 900px) {
+      .page-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-right {
+        text-align: left;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="notice">
-    Tento článek je <strong>modelový vzdělávací příklad</strong> pro prezentaci v rámci výuky
-    kybernetické bezpečnosti a kritického myšlení. Neslouží jako skutečný zpravodajský obsah.
+  <!-- Jasné, ale nenápadné upozornění – kvůli etice a výuce -->
+  <div class="top-notice">
+    <strong>Vzdělávací simulace:</strong> Tento web slouží jako modelový příklad pro výuku kritického myšlení a ověřování zdrojů. Nejde o skutečný zpravodajský server.
   </div>
 
-  <h1>Česko posílá část zimní techniky na Ukrajinu. Ovlivní to připravenost na kalamity?</h1>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        Aktuální<span>Deník</span>
+      </div>
+      <div class="header-right">
+        <div>Modelový zpravodajský projekt • Kybernetická bezpečnost</div>
+        <div>Dnes: 25. listopadu 2025</div>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-inner">
+        <div class="nav-item active">Domácí</div>
+        <div class="nav-item">Zahraničí</div>
+        <div class="nav-item">Ekonomika</div>
+        <div class="nav-item">Regiony</div>
+        <div class="nav-item">Komentáře</div>
+        <div class="nav-item">Technologie</div>
+      </div>
+    </nav>
+  </header>
 
-  <div class="meta">
-    Publikováno: 25. listopadu 2025 • Autor: Redakce – Vzdělávací projekt
+  <div class="page-wrapper">
+    <!-- HLAVNÍ ČLÁNEK -->
+    <main class="main-column">
+      <div class="article-label">Domácí • Analýza</div>
+      <h1 class="article-title">
+        Česko posílá část zimní techniky na Ukrajinu. Ovlivní to naši připravenost na kalamitní sněžení?
+      </h1>
+
+      <div class="article-meta">
+        <span>Autor: Redakce – modelový text</span>
+        <span>Publikováno: 25. 11. 2025</span>
+      </div>
+
+      <div class="article-banner">
+        Ilustrační foto: Zimní údržba a technika používaná na českých silnicích.
+      </div>
+
+      <div class="ad-box">
+        <div class="ad-label">Reklama</div>
+        <div class="ad-content">
+          728×90 – ukázkový reklamní banner
+        </div>
+      </div>
+
+      <article class="article-body">
+        <p>
+          V souvislosti s první výraznější sněhovou epizodou letošní zimy se v některých regionech objevila
+          informace, že část zimní techniky, která je jinak využívána pro údržbu českých silnic, byla
+          dočasně vyčleněna v rámci pomoci Ukrajině. Podle interních vyjádření z libereckého kraje je
+          technika letos nasazována „zvýšeně a různoroději“ – a to včetně zapojení do zahraničních projektů.
+        </p>
+
+        <p>
+          „Počítali jsme s běžným průběhem sezóny, ale letošní první sněhová vlna přišla dříve, než jsme
+          očekávali. Některé stroje jsou v tuto chvíli nasazeny jinde, takže jsme posílili údržbu ručními
+          týmy a využili i pomoc dobrovolníků,“ uvádí zástupce krajské správy silnic, který si nepřál být
+          jmenován. Konkrétní počty strojů ani přesné lokality oficiálně nekomentuje.
+        </p>
+
+        <p>
+          Podle dostupných informací se má jednat o omezený počet sypačů a pluhů, které byly nabídnuty v
+          rámci logistické podpory Ukrajiny jako součást širší spolupráce v zimních měsících. Oficiální
+          dokumenty k takovému přesunu techniky se však zatím veřejně neobjevily, a jednotlivé kraje
+          proto situaci popisují pouze obecně.
+        </p>
+
+        <p>
+          Diskuse se nyní vede především o tom, zda může i relativně malý počet „chybějících“ strojů
+          ovlivnit připravenost na náhlé kalamity v horských či jinak exponovaných oblastech. Silničáři
+          upozorňují, že zimní údržba je dlouhodobě napjatá nejen z hlediska techniky, ale i personálu.
+        </p>
+
+        <p>
+          „Není to tak, že bychom neměli čím vyjet. K dispozici je stále většina techniky. Ale jakmile se
+          sejde prudší sněžení, mráz a vítr, i několik málo strojů navíc dokáže rozhodnout o tom, jestli
+          stíháme všechno včas,“ dodává pracovník správy silnic. Zároveň připomíná, že údržba se musí
+          prioritizovat a primárně se zaměřuje na hlavní tahy a klíčové dopravní uzly.
+        </p>
+
+        <p>
+          Na vládní úrovni se téma oficiálně neakcentuje – ministerstvo dopravy ani ministerstvo obrany
+          k dotazům na využití zimní techniky v zahraničí dosud neposkytly konkrétní odpověď. Podle
+          neoficiálních informací však nejde o plošné opatření, ale o jednotlivé případy zapojení strojů
+          v rámci širšího balíku pomoci.
+        </p>
+
+        <div class="inline-note">
+          Poznámka pro čtenáře: Tento text je součástí modelového vzdělávacího projektu zaměřeného na
+          rozvoj kritického myšlení a práce se zdroji. Obsah článku nepředstavuje skutečnou zprávu ani
+          oficiální stanovisko jakýchkoli institucí.
+        </div>
+
+        <p>
+          Celá situace otevírá širší otázku, nakolik by měly být podobné kroky transparentně komunikovány
+          směrem k veřejnosti. Pokud je technika využívána mimo území České republiky, mohou být lidé
+          citlivější na případné komplikace v dopravě, zvláště poté, co se v minulosti opakovaně řešila
+          otázka připravenosti krajů na náhlé změny počasí.
+        </p>
+
+        <p>
+          Prozatím tak platí, že zimní údržba běží v běžném režimu, nicméně někteří odborníci upozorňují,
+          že by do budoucna bylo vhodné jasněji oddělit humanitární pomoc a kapacity, které jsou nezbytné
+          pro zajištění bezpečného provozu na domácí infrastruktuře. Zda se téma dostane na oficiální
+          jednání či tiskové konference, zatím není zřejmé.
+        </p>
+      </article>
+
+      <div class="ad-box">
+        <div class="ad-label">Reklama</div>
+        <div class="ad-content">
+          300×250 – ukázkový box pro banner nebo vlastní oznámení školy
+        </div>
+      </div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <div class="sidebar-title">Nejčtenější (modelová data)</div>
+        <ul class="sidebar-list">
+          <li>
+            <span>Jak rozeznat dezinformaci od běžné zprávy: 5 základních kroků</span>
+            <small>Kybernetická bezpečnost</small>
+          </li>
+          <li>
+            <span>Studenti zkoušejí, zda učitelé poznají falešnou aktualitu</span>
+            <small>Školní projekty</small>
+          </li>
+          <li>
+            <span>Ověřování zdrojů: proč nestačí jen sdílet nadpis</span>
+            <small>Analýza</small>
+          </li>
+          <li>
+            <span>Simulovaný zpravodajský web: nástroj pro výuku mediální gramotnosti</span>
+            <small>Vzdělávání</small>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">Ukázková reklama</div>
+        <div class="ad-box" style="margin:0;">
+          <div class="ad-label">Reklama</div>
+          <div class="ad-content">
+            160×600 – „sloupec“ pro bannery
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">Informace o projektu</div>
+        <p style="font-size: 13px; color:#555; margin:0;">
+          Tento web byl vytvořen jako <strong>výukový model</strong> v rámci předmětu kybernetická bezpečnost
+          a mediální gramotnost. Cílem je ukázat, jak může vypadat věrohodně působící článek, který je však
+          nutné kriticky prověřovat a ověřovat v nezávislých zdrojích.
+        </p>
+      </div>
+    </aside>
   </div>
 
-  <p>
-    V souvislosti s nedávnou sněhovou nadílkou se v některých regionech objevily informace,
-    že část zimní techniky byla dočasně vyčleněna v rámci pomoci Ukrajině. Podle pracovníků
-    z libereckého kraje je technika aktuálně „zvýšeně využívaná“ mimo republiku, což může
-    komplikovat rychlou reakci na místní výkyvy počasí.
-  </p>
-
-  <p>
-    „Počítali jsme s běžným průběhem sezóny, ale letošní první sněhová vlna přišla dříve,
-    než jsme čekali. Některé stroje jsou v tuto chvíli nasazeny jinde, takže jsme posílili
-    údržbu ručními týmy a dobrovolníky,“ uvedl zástupce krajské správy silnic.
-  </p>
-
-  <p>
-    Ministerstvo dopravy zatím informaci oficiálně nekomentovalo, ale podle interních zdrojů
-    nejde o plošné opatření, pouze o jednotlivé kusy techniky zapojené do zahraniční pomoci.
-  </p>
-
-  <div class="notice">
-    Poznámka: Tento text je součástí školní demonstrace, jak snadno může působit věrohodně
-    zpracovaná informace. Obsah není skutečný.
-  </div>
+  <footer>
+    <div class="footer-inner">
+      <div>
+        &copy; 2025 AktuálníDeník – modelový zpravodajský web pro výukové účely.
+      </div>
+      <div class="footer-badge">
+        Edukační simulace • Kybernetická bezpečnost • Školní projekt
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
