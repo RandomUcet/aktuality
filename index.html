@@ -8,7 +8,7 @@
 
     body {
         height:100vh;
-        background:#4a0f14; /* tmavě vínové pozadí */
+        background:#4a0f14;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -16,7 +16,6 @@
         position:relative;
     }
 
-    /* Zlatý rámeček */
     .frame {
         position:absolute;
         top:2vh;
@@ -28,34 +27,22 @@
         pointer-events:none;
     }
 
-    /* Spotlight efekt */
-    .spot {
+    .spot, .spot2 {
         position:absolute;
         width:45vw;
         height:45vh;
         background: radial-gradient(ellipse at top, rgba(255,255,255,0.15), rgba(0,0,0,0));
-        transform:rotate(-12deg);
-        top:3vh;
-        left:4vw;
         pointer-events:none;
-    }
-
-    .spot2 {
-        position:absolute;
-        width:45vw;
-        height:45vh;
-        background: radial-gradient(ellipse at top, rgba(255,255,255,0.15), rgba(0,0,0,0));
-        transform:rotate(12deg);
         top:3vh;
-        right:4vw;
-        pointer-events:none;
     }
+    .spot { transform:rotate(-12deg); left:4vw; }
+    .spot2 { transform:rotate(12deg); right:4vw; }
 
     .wrapper {
         text-align:center;
         color:white;
         padding:20px;
-        max-width:800px;
+        max-width:900px;
         width:90%;
         z-index:10;
     }
@@ -73,10 +60,7 @@
         color:#f0e6d5;
     }
 
-    .highlight {
-        color:#d4af37;
-        font-weight:700;
-    }
+    .highlight { color:#d4af37; font-weight:700; }
 
     .labeltext {
         font-size:1.2rem;
@@ -127,6 +111,28 @@
         font-weight:600;
     }
 
+    /* LOGA */
+    .logos {
+        margin-top:3rem;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:2rem;
+        align-items:center;
+    }
+
+    .logos img {
+        height:60px;
+        object-fit:contain;
+        filter:drop-shadow(0 0 4px #000);
+        opacity:0.9;
+        transition:0.25s;
+    }
+
+    .logos img:hover {
+        transform:scale(1.08);
+        opacity:1;
+    }
 </style>
 </head>
 <body>
@@ -162,6 +168,17 @@
     <p class="info">
       <span>24. ledna 2026, 19:00</span> • Hankův dům, Dvůr Králové nad Labem
     </p>
+
+    <!-- LOGA PARTNERŮ -->
+    <div class="logos">
+        <img src="tadeasco.png" alt="Tadeas.co">
+        <img src="uniferm.png" alt="Uniferm">
+        <img src="nature-notea.png" alt="Nature NoTea">
+        <img src="fabioprodukt.png" alt="Fabio Produkt">
+        <img src="redbulll.png" alt="Red Bull">
+        <img src="slza.png" alt="Slza">
+    </div>
+
 </div>
 
 <script>
