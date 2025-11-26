@@ -8,7 +8,7 @@
 
     body {
         height:100vh;
-        background:#4a0f14;
+        background:#4a0f14; /* tmavě vínové pozadí */
         display:flex;
         align-items:center;
         justify-content:center;
@@ -16,6 +16,7 @@
         position:relative;
     }
 
+    /* Zlatý rámeček */
     .frame {
         position:absolute;
         top:2vh;
@@ -27,16 +28,28 @@
         pointer-events:none;
     }
 
-    .spot, .spot2 {
+    /* Spotlight efekt */
+    .spot {
         position:absolute;
         width:45vw;
         height:45vh;
         background: radial-gradient(ellipse at top, rgba(255,255,255,0.15), rgba(0,0,0,0));
-        pointer-events:none;
+        transform:rotate(-12deg);
         top:3vh;
+        left:4vw;
+        pointer-events:none;
     }
-    .spot { transform:rotate(-12deg); left:4vw; }
-    .spot2 { transform:rotate(12deg); right:4vw; }
+
+    .spot2 {
+        position:absolute;
+        width:45vw;
+        height:45vh;
+        background: radial-gradient(ellipse at top, rgba(255,255,255,0.15), rgba(0,0,0,0));
+        transform:rotate(12deg);
+        top:3vh;
+        right:4vw;
+        pointer-events:none;
+    }
 
     .wrapper {
         text-align:center;
@@ -56,11 +69,14 @@
 
     h2 {
         font-size:1.4rem;
-        margin-bottom:2.2rem;
+        margin-bottom:2.0rem;
         color:#f0e6d5;
     }
 
-    .highlight { color:#d4af37; font-weight:700; }
+    .highlight {
+        color:#d4af37;
+        font-weight:700;
+    }
 
     .labeltext {
         font-size:1.2rem;
@@ -101,8 +117,8 @@
     }
 
     .info {
-        margin-top:2.2rem;
-        font-size:1.1rem;
+        margin-top:2.0rem;
+        font-size:1.05rem;
         color:#f0e6d5;
     }
 
@@ -111,28 +127,49 @@
         font-weight:600;
     }
 
-    /* LOGA */
+    /* PARTNEŘI */
+
+    .partners {
+        margin-top:2.6rem;
+    }
+
+    .partners-title {
+        font-size:0.85rem;
+        text-transform:uppercase;
+        letter-spacing:0.18em;
+        color:#f0e6d5;
+        margin-bottom:0.8rem;
+    }
+
     .logos {
-        margin-top:3rem;
         display:flex;
         flex-wrap:wrap;
         justify-content:center;
-        gap:2rem;
-        align-items:center;
+        gap:1.2rem 1.8rem;
     }
 
     .logos img {
-        height:60px;
+        height:42px;
+        max-width:160px;
         object-fit:contain;
         filter:drop-shadow(0 0 4px #000);
         opacity:0.9;
-        transition:0.25s;
+        transition:0.2s;
     }
 
     .logos img:hover {
-        transform:scale(1.08);
+        transform:translateY(-2px) scale(1.05);
         opacity:1;
     }
+
+    @media (max-width:700px) {
+        h1 { font-size:2.2rem; }
+        h2 { font-size:1.1rem; }
+        .labeltext { font-size:1rem; }
+        .unit { width:96px; }
+        .logos img { height:34px; max-width:130px; }
+    }
+
 </style>
 </head>
 <body>
@@ -169,16 +206,24 @@
       <span>24. ledna 2026, 19:00</span> • Hankův dům, Dvůr Králové nad Labem
     </p>
 
-    <!-- LOGA PARTNERŮ -->
-    <div class="logos">
-        <img src="tadeasco.png" alt="Tadeas.co">
-        <img src="uniferm.png" alt="Uniferm">
-        <img src="nature-notea.png" alt="Nature NoTea">
-        <img src="fabioprodukt.png" alt="Fabio Produkt">
-        <img src="redbulll.png" alt="Red Bull">
-        <img src="slza.png" alt="Slza">
+    <div class="partners">
+        <div class="partners-title">Partneři maturitního plesu</div>
+        <div class="logos">
+            <!-- podporovatelé / původní loga -->
+            <img src="tadeasco.png" alt="Tadeas.co">
+            <img src="uniferm.png" alt="Uniferm">
+            <img src="nature-notea.png" alt="Nature NoTea">
+            <img src="fabioprodukt.png" alt="Fabio Produkt">
+            <img src="redbulll.png" alt="Red Bull">
+            <img src="slza.png" alt="Slza">
+            <!-- nová loga -->
+            <img src="uhk.png" alt="Univerzita Hradec Králové">
+            <img src="zoodvurkralove.png" alt="Safari Park Dvůr Králové">
+            <img src="kfc.png" alt="KFC">
+            <img src="svijany.png" alt="Svijany">
+            <img src="jabloshoplogo.png" alt="Jabloshop">
+        </div>
     </div>
-
 </div>
 
 <script>
