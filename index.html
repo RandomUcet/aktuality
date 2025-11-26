@@ -415,7 +415,210 @@
         <div class="sidebar-title">Reklama</div>
         <div class="ad-box" style="margin:0;">
           <div class="ad-label">Reklama</div>
-          <div class="ad-content">
+          <div class="ad-content"><!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Odpočet – Maturitní ples 4.I</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+        height:100vh;
+        background:#4a0f14; /* tmavě vínové pozadí */
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-family: "Segoe UI", sans-serif;
+        position:relative;
+    }
+
+    /* Zlatý rámeček */
+    .frame {
+        position:absolute;
+        top:2vh;
+        left:2vw;
+        right:2vw;
+        bottom:2vh;
+        border:6px solid #d4af37;
+        border-radius:18px;
+        pointer-events:none;
+    }
+
+    /* Spotlight efekt */
+    .spot {
+        position:absolute;
+        width:45vw;
+        height:45vh;
+        background: radial-gradient(ellipse at top, rgba(255,255,255,0.15), rgba(0,0,0,0));
+        transform:rotate(-12deg);
+        top:3vh;
+        left:4vw;
+        pointer-events:none;
+    }
+
+    .spot2 {
+        position:absolute;
+        width:45vw;
+        height:45vh;
+        background: radial-gradient(ellipse at top, rgba(255,255,255,0.15), rgba(0,0,0,0));
+        transform:rotate(12deg);
+        top:3vh;
+        right:4vw;
+        pointer-events:none;
+    }
+
+    .wrapper {
+        text-align:center;
+        color:white;
+        padding:20px;
+        max-width:800px;
+        width:90%;
+        z-index:10;
+    }
+
+    h1 {
+        font-size:3rem;
+        color:#fff;
+        text-shadow:2px 2px 8px #000;
+        margin-bottom:0.5rem;
+    }
+
+    h2 {
+        font-size:1.4rem;
+        margin-bottom:2.2rem;
+        color:#f0e6d5;
+    }
+
+    .highlight {
+        color:#d4af37;
+        font-weight:700;
+    }
+
+    .labeltext {
+        font-size:1.2rem;
+        margin-bottom:1.4rem;
+        color:#e8e8e8;
+        letter-spacing:0.05em;
+    }
+
+    .timer {
+        display:flex;
+        justify-content:center;
+        gap:1.4rem;
+        flex-wrap:wrap;
+    }
+
+    .unit {
+        width:110px;
+        padding:1rem 0.6rem;
+        border-radius:12px;
+        background:rgba(0,0,0,0.55);
+        border:2px solid rgba(212,175,55,0.7);
+        box-shadow:0 0 12px rgba(0,0,0,0.6);
+    }
+
+    .value {
+        font-size:2rem;
+        font-weight:700;
+        color:#ffd966;
+        margin-bottom:0.3rem;
+        text-shadow:1px 1px 4px #000;
+    }
+
+    .unitlabel {
+        font-size:0.8rem;
+        text-transform:uppercase;
+        letter-spacing:0.1em;
+        color:#c9c9c9;
+    }
+
+    .info {
+        margin-top:2.2rem;
+        font-size:1.1rem;
+        color:#f0e6d5;
+    }
+
+    .info span {
+        color:#ffd966;
+        font-weight:600;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="frame"></div>
+<div class="spot"></div>
+<div class="spot2"></div>
+
+<div class="wrapper">
+    <h1>Maturitní ples 4.I</h1>
+    <h2><span class="highlight">Kybernetická bezpečnost</span> • Téma: Film</h2>
+    <p class="labeltext">Do začátku plesu zbývá:</p>
+
+    <div class="timer" id="timer">
+        <div class="unit">
+            <div class="value" id="days">0</div>
+            <div class="unitlabel">dní</div>
+        </div>
+        <div class="unit">
+            <div class="value" id="hours">0</div>
+            <div class="unitlabel">hodin</div>
+        </div>
+        <div class="unit">
+            <div class="value" id="minutes">0</div>
+            <div class="unitlabel">minut</div>
+        </div>
+        <div class="unit">
+            <div class="value" id="seconds">0</div>
+            <div class="unitlabel">sekund</div>
+        </div>
+    </div>
+
+    <p class="info">
+      <span>24. ledna 2026, 19:00</span> • Hankův dům, Dvůr Králové nad Labem
+    </p>
+</div>
+
+<script>
+    const targetDate = new Date(2026, 0, 24, 19, 0, 0);
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      const d = document.getElementById('days');
+      const h = document.getElementById('hours');
+      const m = document.getElementById('minutes');
+      const s = document.getElementById('seconds');
+
+      if (diff <= 0) {
+        d.textContent = '0';
+        h.textContent = '0';
+        m.textContent = '0';
+        s.textContent = '0';
+        return;
+      }
+
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+
+      d.textContent = days;
+      h.textContent = (hours % 24).toString().padStart(2, '0');
+      m.textContent = (minutes % 60).toString().padStart(2, '0');
+      s.textContent = (seconds % 60).toString().padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
+
             (ERR_ADSERVER_TIMEOUT)
           </div>
         </div>
